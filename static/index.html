@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="HandheldFriendly" content="True" />
+    <title>サイトタイトル</title>
+    <script src="https://unpkg.com/htmx.org@1.9.4"></script>
+</head>
+
+<body>
+    <h2>基本</h2>
+    <button hx-get="/clicked" hx-swap="outerHTML">
+        Click Me
+    </button>
+    <h2>ロード時に自動クリック</h2>
+    <button hx-get="/clicked" hx-trigger="load" hx-swap="outerHTML">
+        Click Me
+    </button>
+    <h2>ロード時に3秒の時間差クリック</h2>
+    <button hx-get="/clicked" hx-trigger="delay:3" hx-swap="outerHTML">
+        Click Me
+    </button>
+    <h2>ロード時に3秒の時間差自動クリック</h2>
+    <button hx-get="/clicked" hx-trigger="load delay:3s" hx-swap="outerHTML">
+        Click Me
+    </button>
+    <h2>手動カウントクリック</h2>
+    <button hx-get="/count" hx-trigger="click" hx-swap="innerHTML">
+        Click Me
+    </button>
+    <h2>自動カウントクリック後、1秒ごとにクリック</h2>
+    <button hx-get="/count" hx-trigger="load, every 1s" hx-swap="innerHTML">
+        Click Me
+    </button>
+
+</body>
+
+</html>
