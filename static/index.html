@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <h1>ベーシックな挙動</h1>
     <h2>基本</h2>
     <button hx-get="/clicked" hx-swap="outerHTML">
         Click Me
@@ -27,14 +28,49 @@
         Click Me
     </button>
     <h2>手動カウントクリック</h2>
-    <button hx-get="/count" hx-trigger="click" hx-swap="innerHTML">
-        Click Me
-    </button>
-    <h2>自動カウントクリック後、1秒ごとにクリック</h2>
-    <button hx-get="/count" hx-trigger="load, every 1s" hx-swap="innerHTML">
+    <button hx-get="/count" hx-swap="innerHTML">
         Click Me
     </button>
 
+
+    <hr>
+    <h1>hx-trigger周り</h1>
+    <h2>手動カウントクリック(一回しかチャンスがない)</h2>
+    <button hx-get="/count" hx-trigger="click once" hx-swap="innerHTML">
+        Click Me
+    </button>
+    <h2>コントロールキーを押しながら手動カウントクリック</h2>
+    <button hx-get="/count" hx-trigger="click[shiftKey]" hx-swap="innerHTML">
+        Control Click Me
+    </button>
+    <h2>自動カウントクリック後、1秒ごとにクリック(複数triggerを入れることが可能)</h2>
+    <button hx-get="/count" hx-trigger="load, click, every 1s" hx-swap="innerHTML">
+        Click Me
+    </button>
+    <h2>フォーカスが外れた時にカウント</h2>
+    <input type="text" hx-get="/count" hx-target="#change_input" hx-trigger="change" hx-swap="innerHTML">
+    <div id="change_input"></div>
+    <h2>入力するたびにカウント</h2>
+    <input type="text" hx-get="/count" hx-target="#changed_input" hx-trigger="keyup changed" hx-swap="innerHTML">
+    <div id="changed_input"></div>
+
+
+    <h2>時間差カウントクリック(delay) クリックイベントを遅らせる</h2>
+    <button hx-get="/count" hx-trigger="click delay:3s" hx-swap="innerHTML">
+        Click Me
+    </button>
+    <h2>時間差カウントクリック(throttle) 連続イベント防止。クリックすると指定した時間内にいくらクリックしてもイベント発火しないようにする</h2>
+    <button hx-get="/count" hx-trigger="click throttle:3s" hx-swap="innerHTML">
+        Click Me
+    </button>
+
+    <hr>
+    <h1>その２</h1>
+    <h2>自分以外を変える</h2>
+    <button hx-get="/clicked" hx-target="#change_me" hx-swap="innerHTML">
+        Click Me
+    </button>
+    <div id="change_me">change me</div>
 </body>
 
 </html>
